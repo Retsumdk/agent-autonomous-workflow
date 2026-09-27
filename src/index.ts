@@ -581,7 +581,7 @@ export class AutonomousWorkflowEngine {
         if (!nextStep) {
           // Check if workflow is complete
           const incomplete = workflow.steps.filter(
-            (s) => s.status === "pending" && s.status !== "skipped"
+            (s) => s.status === "pending"
           );
           if (incomplete.length === 0) {
             workflow.status = "completed";
@@ -641,7 +641,7 @@ export class AutonomousWorkflowEngine {
   }
 
   private findNextExecutableStep(workflow: WorkflowPlan): WorkflowStep | null {
-    return workflow.steps.find((step) => {
+    const found = workflow.steps.find((step) => {
       if (step.status !== "pending") return false;
       // Check all dependencies are satisfied
       return step.dependencies.every((depId) => {
@@ -649,6 +649,7 @@ export class AutonomousWorkflowEngine {
         return dep && (dep.status === "completed" || dep.status === "skipped");
       });
     });
+    return found ?? null;
   }
 
   /**
