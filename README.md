@@ -14,7 +14,7 @@ A self-directed workflow engine that plans, executes, monitors, and self-correct
 ## Installation
 
 ```bash
-npm install agent-autonomous-workflow
+npm install github:Retsumdk/agent-autonomous-workflow
 ```
 
 Or use as a CLI tool:

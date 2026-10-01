@@ -844,4 +844,6 @@ program
     });
   });
 
-program.parse(process.argv);
+if (process.argv[1] && (process.argv[1].endsWith('index.js') || process.argv[1].endsWith('src/index.ts'))) {
+  program.parse(process.argv);
+}
